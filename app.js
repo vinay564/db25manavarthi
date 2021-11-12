@@ -27,6 +27,7 @@ var selectRouter = require('./routes/selector');
 const resoureRouter = require('./routes/resource');
 const Costume = require("./models/costume"); 
 var costumeRouter = require('./routes/costumes'); 
+
 // We can seed the collection if needed on
 //server start
 //server start

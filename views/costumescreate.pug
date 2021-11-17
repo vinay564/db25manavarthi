@@ -1,0 +1,41 @@
+extends layout
+
+block content
+ h1= title
+ form(id='CostumesForm', action="/resource/costumes", method="POST")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.costumesAttr(for='costumes_type',class="col-form-label") costumes type
+      div(class="col-auto")
+         input#costumes_type(type='text', name='costumes_type',class="form-control")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.costumesAttr(for='size', class="col-form-label") costumes size
+      div(class="col-auto")
+         input#size(type='text', name='size',class="form-control")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.costumesAttr(for='cost',class="col-form-label") costumes cost
+      div(class="col-auto")
+         input#cost(type='number', name='cost',class="form-control")
+    input(type="submit",class="btn btn-primary")
+ script.
+    document.forms['CostumesForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+    method: 'POST',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+    }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+    });
+    });

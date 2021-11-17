@@ -1,0 +1,38 @@
+extends layout
+
+block content
+ h1= title
+
+  if(toShow == null)
+    h2 No instance to detail
+  else
+    - let costumesid = toShow._id
+    - let costumes_type = toShow.costumes_type
+    - let costumessize = toShow.size
+    - let costumescost = toShow.cost
+    - let actionid = "/resource/costumes/" + costumesid
+    script let actionid = "#{actionid}"
+    div
+    div.row
+    div(class='costumesAttr mr-3') costumes ID is: 
+      span(style="color:red") #{costumesid}
+    div.row
+    div(class='costumesAttr mr-3') Costumes Type is: 
+      span(style="color:red") #{costumes_type}
+    div.row
+    div(class='costumesAttr mr-3') costumes Size is: 
+      span(style="color:red") #{costumessize}
+    div.row
+    div(class='costumesAttr mr-3') costumes Cost is:
+      span(style="color:red") #{costumescost}
+    button(class="btn btn-primary m-2" onclick="detailOnid()") Goback
+    button(class="btn btn-danger m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+    // Go back to the home page for the costumes collection
+    window.location.href='/costumes'
+    }
+    function detailOnid() {
+    window.location.href='/costumes'
+    }
